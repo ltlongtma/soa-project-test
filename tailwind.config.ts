@@ -56,7 +56,7 @@ export default {
         },
         mainBg: "#562C2C",
         secondaryBg: "#F2542D",
-        textMain:'#562C2C'
+        textMain: "#562C2C",
       },
       borderRadius: {
         lg: "var(--radius)",
