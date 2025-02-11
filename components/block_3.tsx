@@ -30,23 +30,23 @@ export default function Block_3() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-center mb-12 text-[#E85C3F]">
+      <h1 className="text-4xl font-bold text-center mb-12 text-secondaryBg">
         NOS ACTIVITÉS
       </h1>
 
       <div className="bg-white rounded-3xl p-6 shadow-sm border mb-8">
         <div className="flex items-center justify-center mb-6 gap-5">
           <button onClick={handlePreviousMonth}>
-            <ChevronLeft className="h-6 w-6 text-[#E85C3F]" />
+            <ChevronLeft className="h-6 w-6 text-secondaryBg" />
           </button>
-          <h2 className="text-xl font-medium text-[#E85C3F]">
+          <h2 className="text-xl font-medium text-secondaryBg">
             {currentMonth.toLocaleString("fr-FR", {
               month: "long",
               year: "numeric",
             })}
           </h2>
           <button onClick={handleNextMonth}>
-            <ChevronRight className="h-6 w-6 text-[#E85C3F]" />
+            <ChevronRight className="h-6 w-6 text-secondaryBg" />
           </button>
         </div>
         <Calendar

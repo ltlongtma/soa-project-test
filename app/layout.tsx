@@ -8,11 +8,22 @@ import { API_URL } from "@/api/endpoint";
 import { AppTypes } from "@/type";
 
 export async function getData(): Promise<AppTypes.Data[]> {
-  const response = await fetch(`${API_URL.GET_ALL_PAGES}?lang=en`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
+  try {
+    console.log('Fetching data from:', `${API_URL.GET_ALL_PAGES}?lang=en`);
+    const response = await fetch(`${API_URL.GET_ALL_PAGES}?lang=en`);
+    console.log('Response status:', response.status);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log('Data received:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];  // Return empty array instead of throwing to prevent app crash
   }
-  return response.json();
 }
 
 const poppins = Poppins({

@@ -11,14 +11,15 @@ import Block_7 from "@/components/block_7";
 export default async function Home() {
   const data = await getData();
 
+
   return (
     <main className="relative overflow-hidden">
       <Banner data={data} />
       <Block_1 data={data} />
       <Block_2 data={data} />
       <Block_3 />
-      <Block_4 />
-      <Block_5 />
+      <Block_4 data={data} />
+      <Block_5 data={data} />
       <Block_6 />
       <Block_7 />
     </main>
