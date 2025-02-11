@@ -1,24 +1,38 @@
-"use client"
-import Link from "next/link"
-import { MessageCircle, Target, Map, Menu } from "lucide-react"
+"use client";
+import Link from "next/link";
+import { Menu } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+// import mountainIcon from "@/public/icon/mountains.svg";
+import Image from "next/image";
 
 export function Header() {
   return (
-    <header className="fixed top-0 z-50 w-full bg-[#4A3B3B]/90 backdrop-blur-sm">
-      <div className="container flex h-16 items-center justify-between px-4 mx-auto">
+    <header className="fixed top-0 z-50 w-full bg-mainBg/70 backdrop-blur-sm">
+      <div className="container flex h-16 items-center px-4 mx-auto relative justify-between">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-white lg:text-[15px] text-[10.5px] font-bold hover:text-white/80 "
+        >
+          LOGO SAMPLE
+        </Link>
+
         {/* Mobile Menu */}
         <div className="lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-white">
-                <Menu className="h-6 w-6" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white w-6 h-6"
+              >
+                <Menu className="h-20 w-20" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] bg-[#4A3B3B]">
+            <SheetContent side="right" className="w-[300px] bg-[#4A3B3B]">
               <nav className="flex flex-col gap-4">
                 <Link href="/" className="flex items-center text-white">
                   <span className="text-xl font-bold">LOGO SAMPLE</span>
@@ -42,44 +56,63 @@ export function Header() {
           </Sheet>
         </div>
 
-        {/* Logo */}
-        <Link href="/" className="text-white text-xl font-bold">
-          LOGO SAMPLE
-        </Link>
-
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
-          <Link href="#" className="text-white hover:text-white/80">
-            Titre 1
-          </Link>
-          <Link href="#" className="text-white hover:text-white/80">
-            Titre 2
-          </Link>
-          <Link href="#" className="text-white hover:text-white/80">
-            Titre 3
-          </Link>
-          <Link href="#" className="text-white hover:text-white/80">
-            Titre 4
-          </Link>
+        <nav className="hidden lg:flex mx-auto lg:space-x-56  justify-center flex-1">
+          <div>
+            <Link href="#" className="text-white hover:text-white/80">
+              Titre 1
+            </Link>
+          </div>
+
+          <div className="flex lg:space-x-24">
+            <Link href="#" className="text-white hover:text-white/80">
+              Titre 2
+            </Link>
+            <Link href="#" className="text-white hover:text-white/80">
+              Titre 3
+            </Link>
+            <Link href="#" className="text-white hover:text-white/80">
+              Titre 4
+            </Link>
+          </div>
         </nav>
 
         {/* Right Icons */}
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="text-white hidden lg:flex">
-            <Map className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="text-white hidden lg:flex">
-            <MessageCircle className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="text-white hidden lg:flex">
-            <Target className="h-5 w-5" />
-          </Button>
-          <Button className="hidden lg:flex bg-[#E97B5B] hover:bg-[#E97B5B]/90 text-white rounded-full px-6">
-            Start
+        <div className="items-center gap-5 hidden lg:flex">
+          <Image
+            src="/icon/moutains.svg"
+            alt="Mountain Icon"
+            width={24}
+            height={24}
+            className="hover:rotate-3 cursor-pointer"
+          />
+
+          <Image
+            src="/icon/fishing.svg"
+            alt="Mountain Icon"
+            width={24}
+            height={24}
+            className="hover:rotate-3 cursor-pointer"
+          />
+
+          <Image
+            src="/icon/crosshair.svg"
+            alt="Mountain Icon"
+            width={24}
+            height={24}
+            className="hover:rotate-3 cursor-pointer"
+          />
+          <Button className="hidden lg:flex bg-[#F2542D] text-white rounded-full px-8 relative hover:rotate-3 hover:bg-[#F2542D]/80">
+            <Image
+              src="/icon/move-up-right.svg"
+              alt="Mountain Icon"
+              width={12}
+              height={12}
+              className="hover:rotate-3 cursor-pointer absolute left-8"
+            />
           </Button>
         </div>
       </div>
     </header>
-  )
+  );
 }
-
