@@ -1,4 +1,4 @@
-import { getData } from "@/app/layout";
+import { AppTypes } from "@/type";
 import Image from "next/image";
 
 interface BannerImageProps {
@@ -40,7 +40,9 @@ const ActivityIcon = ({
       height={24}
       className="hover:rotate-3 cursor-pointer"
     />
-    {label && <span className="text-white text-sm mt-2 font-medium">{label}</span>}
+    {label && (
+      <span className="text-white text-sm mt-2 font-medium">{label}</span>
+    )}
   </div>
 );
 
@@ -74,8 +76,7 @@ const ActivityIcons = ({
   );
 };
 
-export async function Banner() {
-  const data = await getData();
+export async function Banner({ data }: { data: AppTypes.Data[] }) {
   const activities = data?.[0]?.banner_menu ?? [];
 
   return (

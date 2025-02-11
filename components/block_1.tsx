@@ -1,6 +1,6 @@
-import { getData } from "@/app/layout";
 import { SectionTitle } from "@/components/ui/section-title";
 import { CaseCard, type CaseCardProps } from "@/components/case-card";
+import { AppTypes } from "@/type";
 
 interface Case {
   category: string;
@@ -15,8 +15,7 @@ interface Block1Data {
   cases: Case[];
 }
 
-export default async function Block_1() {
-  const data = await getData();
+export default async function Block_1({ data }: { data: AppTypes.Data[] }) {
   const dataBlock_1 = (data?.[0]?.bloc_1 ?? {}) as Block1Data;
 
   const cards: CaseCardProps[] = [
@@ -45,9 +44,9 @@ export default async function Block_1() {
 
   return (
     <section className="container mx-auto px-4 py-12 md:py-16">
-      <SectionTitle 
-        title={dataBlock_1?.title ?? ""} 
-        subtitle={dataBlock_1?.subtitle ?? ""} 
+      <SectionTitle
+        title={dataBlock_1?.title ?? ""}
+        subtitle={dataBlock_1?.subtitle ?? ""}
       />
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
