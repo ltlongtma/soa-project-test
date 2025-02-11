@@ -8,7 +8,7 @@ import Block_7 from "@/components/block_7";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative overflow-hidden">
       <Banner />
       <Block_1 />
       <Block_3 />
