@@ -1,11 +1,4 @@
 import Image from "next/image";
-import {
-  Heart,
-  HandshakeIcon,
-  Globe2,
-  Settings,
-  SmilePlus,
-} from "lucide-react";
 import type React from "react";
 import { AppTypes } from "@/type";
 

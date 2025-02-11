@@ -19,15 +19,6 @@ interface CaseItem {
   description: string;
 }
 
-interface Block4Data {
-  title: string;
-  text_title: string;
-  pictos: Array<{
-    title: string;
-    description: string;
-  }>;
-}
-
 const CASE_IMAGES = [
   "/image_1-block-4.png",
   "/image_2-block-4.png",
