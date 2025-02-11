@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,6 +26,13 @@ export default function RootLayout({
       <body className={`${poppins.variable} font-sans antialiased`}>
         <Header />
         {children}
+        <Image
+          src="/chat-icon.png"
+          alt="Chat Icon"
+          width={24}
+          height={24}
+          className="fixed md:top-[90%] top-[93%] right-6 w-14 h-14 cursor-pointer"
+        />
         <Footer />
       </body>
     </html>
