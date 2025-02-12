@@ -9,20 +9,22 @@ import { AppTypes } from "@/type";
 
 export async function getData(): Promise<AppTypes.Data[]> {
   try {
-    console.log('Fetching data from:', `${API_URL.GET_ALL_PAGES}?lang=en`);
+    console.log("Fetching data from:", `${API_URL.GET_ALL_PAGES}?lang=en`);
     const response = await fetch(`${API_URL.GET_ALL_PAGES}?lang=en`);
-    console.log('Response status:', response.status);
-    
+    console.log("Response status:", response.status);
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch data: ${response.status} ${response.statusText}`
+      );
     }
-    
+
     const data = await response.json();
-    console.log('Data received:', data);
+    console.log("Data received:", data);
     return data;
   } catch (error) {
-    console.error('Error fetching data:', error);
-    return [];  // Return empty array instead of throwing to prevent app crash
+    console.error("Error fetching data:", error);
+    return []; // Return empty array instead of throwing to prevent app crash
   }
 }
 
@@ -54,7 +56,7 @@ export default async function RootLayout({
           height={24}
           className="fixed md:top-[90%] top-[93%] right-6 w-14 h-14 cursor-pointer"
         />
-        <Footer />
+        <Footer data={await getData()} />
       </body>
     </html>
   );

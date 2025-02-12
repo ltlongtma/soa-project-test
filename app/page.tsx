@@ -20,7 +20,7 @@ export default async function Home() {
       <Block_4 data={data} />
       <Block_5 data={data} />
       <Block_6 data={data} />
-      <Block_7 />
+      <Block_7 data={data} />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import dayjs from "dayjs";
 import { ArrowUpRight, Instagram } from "lucide-react";
 import { AppTypes } from "@/type";
 import { useState } from "react";
@@ -49,15 +50,19 @@ export default function Block_6({ data }: { data: AppTypes.Data[] }) {
             />
           </div>
           <div className="p-6">
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-3xl font-bold">La famille</h2>
-              <span className="text-xl text-gray-600">
-                {galleryImages[indexActiveCard]?.reviews?.date}
+            <div className="flex justify-between items-center mb-3 gap-44">
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">
+                  {galleryImages[indexActiveCard]?.reviews?.author}
+                </h2>
+                <p className="text-[#666666] text-lg font-normal">
+                  {galleryImages[indexActiveCard]?.reviews?.review}
+                </p>
+              </div>
+              <span className="text-xl text-black">
+                {galleryImages[indexActiveCard]?.reviews?.date ? dayjs(galleryImages[indexActiveCard]?.reviews?.date).format("DD MMM YYYY") : ""}
               </span>
             </div>
-            <p className="text-gray-600 text-lg">
-              {galleryImages[indexActiveCard]?.reviews?.review}
-            </p>
           </div>
         </div>
       </div>
@@ -68,7 +73,7 @@ export default function Block_6({ data }: { data: AppTypes.Data[] }) {
     <div className="p-6 bg-gradient-to-b from-[#EAFCFF] to-[#FFFFFF] ">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-[#666666] text-lg leading-relaxed">
             {dataBlock_6?.text}
           </p>
           <h1 className="text-[2.5rem] font-extrabold leading-tight text-[#4A2B2B]">
