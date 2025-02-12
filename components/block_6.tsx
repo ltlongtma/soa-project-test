@@ -9,7 +9,6 @@ export default function Block_6({ data }: { data: AppTypes.Data[] }) {
   const [indexActiveCard, setIndexActiveCard] = useState<number>(0);
   const dataBlock_6 = data?.[0]?.bloc_5 ?? {};
 
-
   const galleryImages = [
     {
       src: "/image-1-block-6.png",
@@ -50,17 +49,30 @@ export default function Block_6({ data }: { data: AppTypes.Data[] }) {
             />
           </div>
           <div className="p-6">
-            <div className="flex justify-between items-center mb-3 gap-44">
+            <div className="flex justify-between items-center mb-3 md:space-x-40 gap-3">
               <div>
-                <h2 className="text-2xl font-semibold mb-4">
-                  {galleryImages[indexActiveCard]?.reviews?.author}
-                </h2>
-                <p className="text-[#666666] text-lg font-normal">
+                <div className="flex items-center justify-between mb-4 md:mb-0">
+                  <h2 className="md:text-2xl text-lg font-semibold md:mb-4">
+                    {galleryImages[indexActiveCard]?.reviews?.author}
+                  </h2>
+                  <span className="text-[14px] text-black items-center md:hidden block whitespace-nowrap">
+                    {galleryImages[indexActiveCard]?.reviews?.date
+                      ? dayjs(
+                          galleryImages[indexActiveCard]?.reviews?.date
+                        ).format("DD MMM YYYY")
+                      : ""}
+                  </span>
+                </div>
+                <p className="text-[#666666] md:text-lg text-[14px] font-normal">
                   {galleryImages[indexActiveCard]?.reviews?.review}
                 </p>
               </div>
-              <span className="text-xl text-black">
-                {galleryImages[indexActiveCard]?.reviews?.date ? dayjs(galleryImages[indexActiveCard]?.reviews?.date).format("DD MMM YYYY") : ""}
+              <span className="text-xl text-black hidden md:block whitespace-nowrap">
+                {galleryImages[indexActiveCard]?.reviews?.date
+                  ? dayjs(galleryImages[indexActiveCard]?.reviews?.date).format(
+                      "DD MMM YYYY"
+                    )
+                  : ""}
               </span>
             </div>
           </div>
@@ -72,14 +84,14 @@ export default function Block_6({ data }: { data: AppTypes.Data[] }) {
   return (
     <div className="p-6 bg-gradient-to-b from-[#EAFCFF] to-[#FFFFFF] ">
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <p className="text-[#666666] text-lg leading-relaxed">
-            {dataBlock_6?.text}
-          </p>
+        <div className="grid md:grid-cols-2 md:flex-row-reverse md:gap-8 gap-3 mb-8">
           <h1 className="text-[2.5rem] font-extrabold leading-tight text-[#4A2B2B]">
             {dataBlock_6?.title}
             <span className="text-[#FF6B6B]"> #BASIC</span>
           </h1>
+          <p className="text-[#666666] text-lg leading-relaxed">
+            {dataBlock_6?.text}
+          </p>
         </div>
 
         <div className="relative flex justify-center">
@@ -95,7 +107,7 @@ export default function Block_6({ data }: { data: AppTypes.Data[] }) {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 mt-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-5">
           {galleryImages.map((image, index) => (
             <div
               key={index}

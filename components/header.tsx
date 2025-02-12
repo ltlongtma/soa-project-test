@@ -2,14 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AppTypes } from "@/type";
-
-interface HeaderProps {
-  data: AppTypes.Data[];
-}
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { getData } from "@/app/page";
 
 interface NavLinkProps {
   href: string;
@@ -45,7 +50,29 @@ const IconButton = ({
   />
 );
 
-export function Header({ data }: HeaderProps) {
+export function Header() {
+  const [language, setLanguage] = useState("en");
+
+  const params = useSearchParams();
+
+  const router = useRouter();
+
+  const lang = params.get("lang") || "en";
+
+  const [data, setData] = useState<AppTypes.Data[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData({ lang });
+      setData(data);
+    };
+    fetchData();
+  }, [lang, language]);
+
+  useEffect(() => {
+    router.push(`/?lang=${language}`);
+  }, [language]);
+
   const menuItems = data?.[0]?.head_menu ?? [];
 
   const MobileMenu = () => (
@@ -96,6 +123,34 @@ export function Header({ data }: HeaderProps) {
 
   const RightIcons = () => (
     <div className="items-center gap-5 hidden lg:flex">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 text-gray-400 hover:text-white hover:bg-transparent focus:bg-transparent active:bg-transparent"
+          >
+            {language} <ChevronDown className="ml-2 h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className="bg-[#4A3B3B] border-gray-600"
+          align="start"
+        >
+          <DropdownMenuItem
+            onClick={() => setLanguage("en")}
+            className="text-gray-400 focus:text-white focus:bg-gray-700"
+          >
+            English
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => setLanguage("fr")}
+            className="text-gray-400 focus:text-white focus:bg-gray-700"
+          >
+            Français
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <IconButton src="/icon/moutains.svg" alt="Mountains" />
       <IconButton src="/icon/fishing.svg" alt="Fishing" />
       <IconButton src="/icon/crosshair.svg" alt="Crosshair" />
@@ -119,6 +174,7 @@ export function Header({ data }: HeaderProps) {
         <NavLink href="/" className="lg:text-[15px] text-[10.5px] font-bold">
           LOGO SAMPLE
         </NavLink>
+
         <MobileMenu />
         <DesktopNav />
         <RightIcons />

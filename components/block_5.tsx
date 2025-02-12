@@ -77,7 +77,7 @@ export default function Block_5({ data }: { data: AppTypes.Data[] }) {
 
 function ValueItem({ src, title, subtitle }: ValueItemProps) {
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-2">
       <div className="w-20 h-20 rounded-full bg-[#0E9594] flex items-center justify-center">
         {/* <Icon className="w-10 h-10 text-white" /> */}
         <Image
@@ -88,8 +88,8 @@ function ValueItem({ src, title, subtitle }: ValueItemProps) {
           className="hover:rotate-3 cursor-pointer"
         />
       </div>
-      <h3 className="text-2xl font-medium text-textMain">{title}</h3>
-      <p className="text-lg text-textMain/80 font-normal">{subtitle}</p>
+      <h3 className="text-lg font-medium text-textMain">{title}</h3>
+      <p className="text-sm text-textMain/80 font-normal">{subtitle}</p>
     </div>
   );
 }

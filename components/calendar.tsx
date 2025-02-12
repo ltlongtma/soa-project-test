@@ -55,7 +55,7 @@ export function Calendar({ currentMonth, selectedDate, onSelectDate }: CalendarP
     <div>
       <div className="grid grid-cols-7 gap-4 mb-4">
         {DAYS_OF_WEEK.map((day) => (
-          <div key={day} className="text-center font-medium text-gray-600">
+          <div key={day} className="text-center font-semibold text-gray-600">
             {day}
           </div>
         ))}

@@ -28,11 +28,14 @@ export function CaseCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="space-y-2 p-4">
+      <div className="md:space-y-2 space-y-4 md:p-4">
         <h3 className="text-secondaryBg font-medium text-xl">{caseTitle}</h3>
         <h4 className="text-xl font-medium text-textMain">{subtitle}</h4>
         <p className="text-textMain/80 line-clamp-2">{description}</p>
-        <Button variant="outline" className="mt-4 group rounded-full">
+        <Button
+          variant="outline"
+          className="md:mt-4 pt-10 md:pt-0 group rounded-full"
+        >
           {buttonText}
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-[#0E9594]" />
         </Button>

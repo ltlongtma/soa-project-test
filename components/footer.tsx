@@ -2,8 +2,24 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AppTypes } from "@/type";
+import { useEffect, useState } from "react";
+import { getData } from "@/app/page";
+import { useSearchParams } from "next/navigation";
 
-export function Footer({ data }: { data: AppTypes.Data[] }) {
+export function Footer() {
+  const [data, setData] = useState<AppTypes.Data[]>([]);
+  const params = useSearchParams();
+
+  const lang = params.get("lang") || "en";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData({ lang });
+      setData(data);
+    };
+    fetchData();
+  }, [lang]);
+
   const dataFooter = data?.[0]?.footer ?? {};
 
   const renderSocialLinks = () => {

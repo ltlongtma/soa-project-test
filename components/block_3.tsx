@@ -30,7 +30,7 @@ export default function Block_3() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-4xl font-bold text-center mb-12 text-secondaryBg">
+      <h1 className=" text-2xl md:text-4xl font-bold text-center mb-7 md:mb-12 text-secondaryBg">
         NOS ACTIVITÉS
       </h1>
 
@@ -39,7 +39,7 @@ export default function Block_3() {
           <button onClick={handlePreviousMonth}>
             <ChevronLeft className="h-6 w-6 text-secondaryBg" />
           </button>
-          <h2 className="text-xl font-medium text-secondaryBg">
+          <h2 className="text-base md:text-xl font-medium text-textMain capitalize">
             {currentMonth.toLocaleString("fr-FR", {
               month: "long",
               year: "numeric",
@@ -113,13 +113,13 @@ export default function Block_3() {
           <Button
             type="button"
             variant="outline"
-            className="rounded-full px-10"
+            className="rounded-full px-10 w-full md:w-fit"
           >
             Clear All
           </Button>
           <Button
             type="submit"
-            className="rounded-full bg-[#E85C3F] hover:bg-[#E85C3F]/90 px-10"
+            className="rounded-full bg-[#E85C3F] hover:bg-[#E85C3F]/90 px-10 w-full md:w-fit"
           >
             Envoyer
             <Send className="mr-2 h-4 w-4" />

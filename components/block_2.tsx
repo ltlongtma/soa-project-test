@@ -35,7 +35,7 @@ export default function Block_2({ data }: { data: AppTypes.Data[] }) {
     return buttonGroup.map((item) => (
       <Button
         variant="outline"
-        className="mt-4 group rounded-full ml-2 border-textMain hover:bg-textMain hover:text-white"
+        className="mt-4 group rounded-full ml-2 border-[#F2542D80]/50 hover:bg-textMain hover:text-white"
         key={item.label}
       >
         <Image src={item.icon} alt={item.label} width={24} height={24} />
@@ -48,15 +48,17 @@ export default function Block_2({ data }: { data: AppTypes.Data[] }) {
     <section className="container mx-auto px-4 py-12 md:py-16">
       <div className="text-center">
         <div className="relative inline-block">
-          <h2 className="text-[52px] font-semibold text-secondaryBg px-8 relative">
+          <h2 className="text-2xl md:text-4xl mb-3 md:mb-0 font-semibold text-secondaryBg px-8 relative">
             <span className="absolute left-[-200px] top-1/2 w-[180px] h-[1px] bg-[#BBBBBB]"></span>
             {dataBlock_2?.title ?? ""}
             <span className="absolute right-[-200px] top-1/2 w-[180px] h-[1px] bg-[#BBBBBB]"></span>
           </h2>
         </div>
       </div>
-      <div className="flex justify-center mb-10">{renderSubTitle()}</div>
-      <div className="w-full rounded-lg overflow-hidden shadow-lg -z-10">
+      <div className="flex justify-center mb-10 flex-wrap">
+        {renderSubTitle()}
+      </div>
+      <div className="w-full rounded-lg overflow-hidden shadow-lg -z-20 relative">
         <MapWithNoSSR center={[10.762622, 106.660172]} zoom={13} />
       </div>
     </section>
