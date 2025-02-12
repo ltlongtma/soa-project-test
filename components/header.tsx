@@ -12,9 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getData } from "@/app/page";
+import { getData } from "@/api/utils";
 
 interface NavLinkProps {
   href: string;
@@ -51,12 +51,17 @@ const IconButton = ({
 );
 
 export function Header() {
+  return (
+    <Suspense fallback={<div>Loading header...</div>}>
+      <HeaderContent />
+    </Suspense>
+  );
+}
+
+function HeaderContent() {
   const [language, setLanguage] = useState("en");
-
   const params = useSearchParams();
-
   const router = useRouter();
-
   const lang = params.get("lang") || "en";
 
   const [data, setData] = useState<AppTypes.Data[]>([]);
@@ -71,7 +76,7 @@ export function Header() {
 
   useEffect(() => {
     router.push(`/?lang=${language}`);
-  }, [language]);
+  }, [language, router]);
 
   const menuItems = data?.[0]?.head_menu ?? [];
 

@@ -1,4 +1,4 @@
-import { API_URL } from "@/api/endpoint";
+import { getData } from "@/api/utils";
 import { Banner } from "@/components/banner";
 import Block_1 from "@/components/block_1";
 import Block_2 from "@/components/block_2";
@@ -7,37 +7,32 @@ import { Block_4 } from "@/components/block_4";
 import Block_5 from "@/components/block_5";
 import Block_6 from "@/components/block_6";
 import Block_7 from "@/components/block_7";
-import { AppTypes } from "@/type";
 
-export async function getData({
-  lang,
-}: {
-  lang: string;
-}): Promise<AppTypes.Data[]> {
-  try {
-    const response = await fetch(`${API_URL.GET_ALL_PAGES}?lang=${lang}`);
+type Params = Promise<{ slug: string }>;
 
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch data: ${response.status} ${response.statusText}`
-      );
-    }
+// export async function generateMetadata(props: {
+//   params: Params;
+//   searchParams: SearchParams;
+// }) {
+//   const params = await props.params;
+//   const searchParams = await props.searchParams;
+//   const slug = params.slug;
+//   const query = searchParams.query;
 
-    const data = await response.json();
-    console.log("Data received:", data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return []; // Return empty array instead of throwing to prevent app crash
-  }
-}
+//   return {
+//     title: "Home",
+//   };
+// }
 
 export default async function Home({
-  searchParams,
+  params,
 }: {
-  searchParams: { lang: string };
+  params: Params;
 }) {
-  const data = await getData({ lang: searchParams.lang });
+  const resolvedParams = await params;
+  const lang = resolvedParams?.slug || "en";
+
+  const data = await getData({ lang });
 
   return (
     <main className="relative overflow-hidden">

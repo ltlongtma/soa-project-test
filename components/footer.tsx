@@ -2,14 +2,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { AppTypes } from "@/type";
-import { useEffect, useState } from "react";
-import { getData } from "@/app/page";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { getData } from "@/api/utils";
 
 export function Footer() {
+  return (
+    <Suspense fallback={<div>Loading footer...</div>}>
+      <FooterContent />
+    </Suspense>
+  );
+}
+
+function FooterContent() {
   const [data, setData] = useState<AppTypes.Data[]>([]);
   const params = useSearchParams();
-
   const lang = params.get("lang") || "en";
 
   useEffect(() => {
